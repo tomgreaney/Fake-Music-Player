@@ -108,7 +108,7 @@ public class Driver {
         displayPlaylistTitles(myMixTape,familyFriendlyMusic);
     }
 
-    public static void displayPlaylistTitles(Playlist playlist1,Playlist playlist2){
+    private static void displayPlaylistTitles(Playlist playlist1,Playlist playlist2){
         System.out.println("\nThe name of myMixTape is:\n" + playlist1.getPlaylistName());
         System.out.println("The name of familyFriendlyMusic is:\n" + playlist2.getPlaylistName());
     }
