@@ -4,18 +4,21 @@
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Iterator;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Playlist {
 
     private String name;
     private LinkedList<Track> songs = new LinkedList<Track>();
+    private static Set<String> playlistNames = new HashSet<String>();
 
     Playlist(String name){
-        this.name = name;
+        setPlaylistName(name);
     }
 
     Playlist(){
-        this.name = "Playlist";
+        setPlaylistName("My Playlist");
     }
 
     public String toString(){
@@ -91,8 +94,32 @@ public class Playlist {
         return false;
     }
 
-    public void setPlaylistName(String name){
-        this.name = name;
+    public void setPlaylistName(String newName){
+        newName = newName.trim();//remove spaces from beginning and end of newName.
+        if(!newName.equals(this.name)) {
+            if(!playlistNames.add(newName)) {
+                newName = (incrementNumber(newName).equals(newName))? newName + "#2":incrementNumber(newName);
+                while (!playlistNames.add(newName)) {//if newName is "Playlist#2" and "Playlist#2" exists in playlistName newName becomes "Playlist#3"
+                    newName = incrementNumber(newName);
+                }
+            }
+            playlistNames.remove(this.name);
+            this.name = newName;
+        }
+    }
+
+    private String incrementNumber(String playlistName){
+        //if "Mixtape #3" is inputted, "Mixtape #4" is outputted.
+        int lastHashOccurrence = playlistName.lastIndexOf('#');
+        if(lastHashOccurrence == -1){
+            return playlistName;
+        }else{
+            try{
+                return playlistName.substring(0,lastHashOccurrence+1) + (Integer.parseInt(playlistName.substring(lastHashOccurrence+1)) + 1);
+            }catch(NumberFormatException ex){
+                return playlistName;
+            }
+        }
     }
 
     public String getPlaylistName(){

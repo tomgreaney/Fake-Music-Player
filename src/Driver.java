@@ -14,9 +14,13 @@ public class Driver {
         System.out.println("The year my favourite song was recorded is " + myFavouriteSong.getYear() + ".");
         System.out.println("The length of my favourite song is " + myFavouriteSong.getDuration() + " seconds.");
 
+        System.out.println("\nChange the title of my favourite song...");
         myFavouriteSong.setTitle("American Pie");
+        System.out.println("Change the artist of my favourite song...");
         myFavouriteSong.setArtist("Don McLean");
+        System.out.println("Change the year which my favourite song was recorded...");
         myFavouriteSong.setYear(1971);
+        System.out.println("Change the duration of my favourite song...");
         myFavouriteSong.setDuration(511);
 
         System.out.println("\nThe title of my new favourite song is " + myFavouriteSong.getTitle() + ".");
@@ -24,12 +28,13 @@ public class Driver {
         System.out.println("The year my new favourite song was recorded is " + myFavouriteSong.getYear() + ".");
         System.out.println("The length of my new favourite song is " + myFavouriteSong.getDuration() + " seconds.");
 
+        System.out.println("\nCompare my favourite song to my second favourite song...");
         if (myFavouriteSong.compareTo(mySecondFavouriteSong) < 0) {
-            System.out.println("\nMy favourite song's title comes before my second favourite songs title when ordered alphabetically.");
+            System.out.println("My favourite song's title comes before my second favourite songs title when ordered alphabetically.");
         }else if (myFavouriteSong.compareTo(mySecondFavouriteSong) > 0){
-            System.out.println("\nMy favourite song's title comes after my second favourite songs title when ordered alphabetically.");
+            System.out.println("My favourite song's title comes after my second favourite songs title when ordered alphabetically.");
         }else{
-            System.out.println("\nMy favourite song's title comes either before or after my second favourite songs title when ordered alphabetically.");
+            System.out.println("My favourite song's title comes either before or after my second favourite songs title when ordered alphabetically.");
         }
 
         //Testing Playlist Class
@@ -52,16 +57,16 @@ public class Driver {
         System.out.println("\nShow mixTape after adding songs to it:");
         myMixTape.showList();
 
-        Playlist FamilyFriendlyMusic = new Playlist();
-        FamilyFriendlyMusic.add(mySecondFavouriteSong);
-        FamilyFriendlyMusic.add("Pianoman", "Billy Joel");
-        FamilyFriendlyMusic.add("Bohemian Rhapsody", "Queen", 1975, 354);
+        Playlist familyFriendlyMusic = new Playlist();
+        familyFriendlyMusic.add(mySecondFavouriteSong);
+        familyFriendlyMusic.add("Pianoman", "Billy Joel");
+        familyFriendlyMusic.add("Bohemian Rhapsody", "Queen", 1975, 354);
 
         System.out.println("\nThe instance values in myMixTape are:\n" + myMixTape.toString());
-        System.out.println("\nThe instance values in FamilyFriendlyMusic are:\n" + FamilyFriendlyMusic.toString());
+        System.out.println("\nThe instance values in familyFriendlyMusic are:\n" + familyFriendlyMusic.toString());
 
         System.out.println("\nPlay all songs in FamilyFriendlyMusic in sequential order:");
-        FamilyFriendlyMusic.play(false);
+        familyFriendlyMusic.play(false);
 
         System.out.println("\nPlay all songs in myMixTape in random order:");
         myMixTape.play(true);
@@ -70,8 +75,8 @@ public class Driver {
         myMixTape.remove("aMeriCaN pIe");
         System.out.println("Add my second favourite song to myMixTape...");
         myMixTape.add(mySecondFavouriteSong);
-        System.out.println("Rename myMixTape to 'Mix-Tape-Volume2'...");
-        myMixTape.setPlaylistName("Mix-Tape-Volume2");
+        System.out.println("Rename myMixTape to 'My-New-Mix-Tape'...");
+        myMixTape.setPlaylistName("My-New-Mix-Tape");
 
         System.out.println("\nThe instance values in myMixTape are:\n" + myMixTape.toString());
 
@@ -83,5 +88,28 @@ public class Driver {
 
         System.out.println("\nPlay songs only from 2002 from myMixTape");
         myMixTape.playOnly(2002);
+
+        displayPlaylistTitles(myMixTape,familyFriendlyMusic);
+
+        System.out.println("\nSet familyFriendlyMusic name to 'My-New-Mix-Tape'");
+        familyFriendlyMusic.setPlaylistName("My-New-Mix-Tape");
+        displayPlaylistTitles(myMixTape,familyFriendlyMusic);
+
+        System.out.println("\nSet myMixTape name to 'My-New-Mix-Tape#2'");
+        myMixTape.setPlaylistName("My-New-Mix-Tape#2");
+        displayPlaylistTitles(myMixTape,familyFriendlyMusic);
+
+        System.out.println("\nSet familyFriendlyMusic name to 'Mix-Tape'");
+        familyFriendlyMusic.setPlaylistName("Mix-Tape");
+        displayPlaylistTitles(myMixTape,familyFriendlyMusic);
+
+        System.out.println("\nSet myMixTape name to '  Mix-Tape  '");
+        myMixTape.setPlaylistName("  Mix-Tape  ");
+        displayPlaylistTitles(myMixTape,familyFriendlyMusic);
+    }
+
+    public static void displayPlaylistTitles(Playlist playlist1,Playlist playlist2){
+        System.out.println("\nThe name of myMixTape is:\n" + playlist1.getPlaylistName());
+        System.out.println("The name of familyFriendlyMusic is:\n" + playlist2.getPlaylistName());
     }
 }
